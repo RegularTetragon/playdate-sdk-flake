@@ -31,10 +31,10 @@
 in
   stdenv.mkDerivation rec {
     pname = "playdate-sdk";
-    version = "2.0.3";
+    version = "2.5.0";
     src = pkgs.fetchurl {
       url = "https://download.panic.com/playdate_sdk/Linux/PlaydateSDK-${version}.tar.gz";
-      sha256 = "sha256-FNzb3OjXGZpTTuR9+ox9KZD0sKlYfoA7jg48lZeQrpE=";
+      sha256 = "sha256-1b7j7lkN16YO4EUWyZPZ+PPC9Sa3AFoN5c84ArTGXok=";
     };
 
     buildInputs = pdcInputs;
@@ -80,4 +80,10 @@ in
 
       runHook postInstall
     '';
+    meta = with lib; {
+      description = "the Panic Playdate game console SDK, contains the simulator PlaydateSimulator, the compiler pdc, and the util program pdutil.";
+      homepage = "https://play.date/dev/";
+      licenses = lib.licenses.unfree;
+
+    };
   }
