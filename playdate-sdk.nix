@@ -101,7 +101,6 @@ in
       PLAYDATE_SDK_PATH=.PlaydateSDK .PlaydateSDK/bin/PlaydateSimulator \$@
       EOL
       chmod 555 $out/bin/pdwrapper
-      ln -s $out/bin/pdwrapper $out/bin/PlaydateSimulator
 
       cp -r $root/C_API $out/C_API
       cp -r $root/CoreLibs $out/CoreLibs
