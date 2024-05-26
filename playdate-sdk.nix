@@ -73,7 +73,7 @@ in
 
       cp $root/bin/pdc $out/bin/pdc
       cp $root/bin/pdutil $out/bin/pdutil
-      makeWrapper $root/bin/PlaydateSimulator $out/bin/PlaydateSimulator-unwrapped \
+      makeWrapper $root/bin/PlaydateSimulator $out/bin/PlaydateSimulator \
         --suffix XDG_DATA_DIRS : ${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}\
         --set PLAYDATE_SDK_PATH .PlaydateSDK
 
@@ -98,7 +98,7 @@ in
         ln -s $out/Resources .PlaydateSDK/Resources
       fi
       echo "pdwrapper> Running .PlaydateSDK/bin/\`basename \$0\`-unwrapped";
-      PLAYDATE_SDK_PATH=.PlaydateSDK .PlaydateSDK/bin/\`basename \$0\`-unwrapped \$@
+      PLAYDATE_SDK_PATH=.PlaydateSDK .PlaydateSDK/bin/PlaydateSimulator \$@
       EOL
       chmod 555 $out/bin/pdwrapper
       ln -s $out/bin/pdwrapper $out/bin/PlaydateSimulator

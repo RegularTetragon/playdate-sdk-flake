@@ -14,11 +14,11 @@ The playdate compiler
 
 A utility for talking to the playdate over USB
 
+## pdwrapped
+
+A wrapper for PlaydateSimulator that allows modification of a .PlaydateSDK directory.
+
 ## PlaydateSimulator
-
-A program for running .pdx files. This version is wrapped to create the writable install directory that PlaydateSimulator expects. This is placed in a .PlaydateSDK directory wherever you run the program.
-
-## PlaydateSimulator-unwrapped
 
 The original binary for the Playdate Simulator. Without the wrapper its a little bit janky to use on a nixos system. If your nix store is writable for some reason it shouldn't have any issues though.
 
@@ -34,10 +34,10 @@ you can run the playdate simulator, pdc, or pdutil from a `nix shell` like so
 ```bash
 nix shell github:RegularTetragon/playdate-sdk-flake#default
 
-PlaydateSimulator
+pdwrapper
 pdc
 pdutil
-PlaydateSimulator-unwrapped
+PlaydateSimulator
 ```
 
 ## In a project
