@@ -1,0 +1,54 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 0,
+        "narHash": "sha256-8BO3B7e3BiyIDsaKA0tY8O88rClYRTjvAp66y+VBUeU=",
+        "path": "/nix/store/qzjidyx3fip413vg7by6ibl22lwizc68-source",
+        "type": "path"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 0,
+        "narHash": "sha256-8BO3B7e3BiyIDsaKA0tY8O88rClYRTjvAp66y+VBUeU=",
+        "path": "/nix/store/qzjidyx3fip413vg7by6ibl22lwizc68-source",
+        "type": "path"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "playdate-sdk": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1716761512,
+        "narHash": "sha256-q1LkFO8XQI4yfAB81TbFrvibLlYRIeBYfwU07A/SGEI=",
+        "owner": "RegularTetragon",
+        "repo": "playdate-sdk-flake",
+        "rev": "460a9b4fed0a6fcac5d371e0819245ce26784a5b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "RegularTetragon",
+        "repo": "playdate-sdk-flake",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "playdate-sdk": "playdate-sdk"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
