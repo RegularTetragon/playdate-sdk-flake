@@ -71,8 +71,8 @@ in
       # Binaries
       mkdir -p $out/bin
 
-      cp $root/bin/pdc $out/bin/pdc-unwrapped
-      cp $root/bin/pdutil $out/bin/pdutil-unwrapped
+      cp $root/bin/pdc $out/bin/pdc
+      cp $root/bin/pdutil $out/bin/pdutil
       makeWrapper $root/bin/PlaydateSimulator $out/bin/PlaydateSimulator-unwrapped \
         --suffix XDG_DATA_DIRS : ${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}\
         --set PLAYDATE_SDK_PATH .PlaydateSDK
@@ -101,8 +101,6 @@ in
       PLAYDATE_SDK_PATH=.PlaydateSDK .PlaydateSDK/bin/\`basename \$0\`-unwrapped \$@
       EOL
       chmod 555 $out/bin/pdwrapper
-      ln -s $out/bin/pdwrapper $out/bin/pdc
-      ln -s $out/bin/pdwrapper $out/bin/pdutil
       ln -s $out/bin/pdwrapper $out/bin/PlaydateSimulator
 
       cp -r $root/C_API $out/C_API
