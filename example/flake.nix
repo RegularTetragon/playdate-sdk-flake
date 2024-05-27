@@ -30,7 +30,7 @@
         };
         outName = "hello_world.pdx";
         nativeBuildInputs = [playdate-sdk-pkg pkgs.gcc-arm-embedded pkgs.cmake];
-        buildInputs = [ ];
+        buildInputs = [ playdate-sdk-pkg ];
         cmakeFlags = ["-DPLAYDATE_SDK_PATH=`pwd`/.PlaydateSDK"];
         configurePhase =  ''
         export PLAYDATE_SDK_PATH=${playdate-sdk-pkg}
@@ -44,6 +44,12 @@
           export PLAYDATE_SDK_PATH=`pwd`/.PlaydateSDK
           runHook preInstall
           cp -r . $out
+          mkdir $out/bin
+          cat > $out/bin/${self.packages.${system}.default.pname} <<EOL
+            #!/usr/bin/env bash
+            ${playdate-sdk-pkg}/bin/PlaydateSimulator $out/hello_world.pdx
+          EOL
+          chmod 555 $out/bin/${self.packages.${system}.default.pname}
           runHook postInstall
         '';
       };

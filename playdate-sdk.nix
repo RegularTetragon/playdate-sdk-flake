@@ -73,9 +73,7 @@ in
 
       cp $root/bin/pdc $out/bin/pdc
       cp $root/bin/pdutil $out/bin/pdutil
-      makeWrapper $root/bin/PlaydateSimulator $out/bin/PlaydateSimulator \
-        --suffix XDG_DATA_DIRS : ${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}\
-        --set PLAYDATE_SDK_PATH .PlaydateSDK
+      cp $root/bin/PlaydateSimulator $out/bin/PlaydateSimulator 
 
       # NixOS really hates writable install paths. Lets fake one
 
@@ -92,13 +90,15 @@ in
         mkdir .PlaydateSDK
         cp -TR $out/Disk .PlaydateSDK/Disk
         chmod -R 755 .PlaydateSDK/Disk
-        ln -s $out/bin .PlaydateSDK/bin
+        cp -TR $out/bin .PlaydateSDK/bin
         ln -s $out/C_API .PlaydateSDK/C_API
         ln -s $out/CoreLibs .PlaydateSDK/CoreLibs
         ln -s $out/Resources .PlaydateSDK/Resources
       fi
-      echo "pdwrapper> Running .PlaydateSDK/bin/\`basename \$0\`-unwrapped";
-      PLAYDATE_SDK_PATH=.PlaydateSDK .PlaydateSDK/bin/PlaydateSimulator \$@
+      echo "pdwrapper> Running .PlaydateSDK/bin/PlaydateSimulator";
+      export XDG_DATA_DIRS=$gsettings_schemas_path/share/gsettings-schemas/$gsettings_schemas_name:$gtk_path/share/gsettings-schemas/$gtk_name:$XDG_DATA_DIRS
+
+      PLAYDATE_SDK_PATH=.PlaydateSDK exec -a \`pwd\`.PlaydateSDK/bin/PlaydateSimulator .PlaydateSDK/bin/PlaydateSimulator $@
       EOL
       chmod 555 $out/bin/pdwrapper
 

@@ -12,7 +12,7 @@
         packages = [playdate-sdk];
         shellHook = ''
           export PLAYDATE_NIX_PATH="${playdate-sdk.outPath}"
-          export PLAYDATE_SDK_PATH="${playdate-sdk.outPath}"
+          export PLAYDATE_SDK_PATH=".PlaydateSDK"
           export SDL_AUDIODRIVER=pulseaudio
         '';
       };

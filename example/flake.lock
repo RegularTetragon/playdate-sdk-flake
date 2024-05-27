@@ -29,11 +29,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1716761512,
-        "narHash": "sha256-q1LkFO8XQI4yfAB81TbFrvibLlYRIeBYfwU07A/SGEI=",
+        "lastModified": 1716767382,
+        "narHash": "sha256-bbigOKTVphxIT3YGGUxdhL8PawJKJKB7GzfkJ3Fpyqg=",
         "owner": "RegularTetragon",
         "repo": "playdate-sdk-flake",
-        "rev": "460a9b4fed0a6fcac5d371e0819245ce26784a5b",
+        "rev": "9f1aeaa5b57c515ef13425accfe3b2152bde87e5",
         "type": "github"
       },
       "original": {
