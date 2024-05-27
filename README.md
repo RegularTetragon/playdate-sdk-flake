@@ -4,27 +4,34 @@ A nix flake for creating playdate sdk shells.
 In short, this is a package description for Playdate Simulator, pdc, and pdutil written in nix to make installation easier. This script downloads the SDK from the website and does not provide the files itself.
 
 # Provided binaries:
-This flake provides pdc, pdutil, a wrapper script, an unwrapped version of PlaydateSimulator, and a wrapped version of PlaydateSimulator.
+This flake provides pdc, pdutil, a wrapper script, PlaydateSimulator, and a wrapped version of PlaydateSimulator.
 
 ## pdc
 
-The playdate compiler
+The playdate compiler. Run
+```
+pdc -h
+```
+or check the official documentation for more info
 
 ## pdutil
 
-A utility for talking to the playdate over USB
-
-## pdwrapped
-
-A wrapper for PlaydateSimulator that allows modification of a .PlaydateSDK directory.
+A utility for talking to the playdate over USB. Run
+```
+pdutil -h
+```
+or check the official documentation for more info
 
 ## PlaydateSimulator
 
-The original binary for the Playdate Simulator. Without the wrapper its a little bit janky to use on a nixos system. If your nix store is writable for some reason it shouldn't have any issues though.
+The original binary for the Playdate Simulator. Without the wrapper its a little bit janky to use on a nixos system, though it should function for running your own pdx files:
+```
+PlaydateSimulator <filename.pdx>
+```
+check the official documenation for more info.
 
 ## pdwrapper
-
-A simple bash script for creating the .PlaydateSDK directory if it dosen't exist, and then running PlaydateSimulator from said directory. This lets it write to the Disk folder in .PlaydateSDK only, circumventing the read-only nature of the nix store.
+An unoffical wrapper for PlaydateSimulator. It dreates a .PlaydateSDK subdirectory in the current directory based on the current Playdate SDK in the environment. It's experimental and I don't recommend you use it, though at some point it may allow PlaydateSimulator to have its own writable sandbox.
 
 # Basic Usage:
 
@@ -34,7 +41,6 @@ you can run the playdate simulator, pdc, or pdutil from a `nix shell` like so
 ```bash
 nix shell github:RegularTetragon/playdate-sdk-flake#default
 
-pdwrapper
 pdc
 pdutil
 PlaydateSimulator
@@ -58,9 +64,6 @@ A simple project's flake.nix could look like this:
   {
     devShells.${system}.default = with stdenv; pkgs.mkShell {
       packages = [playdate-sdk-pkg];
-      shellHook = ''
-      export PLAYDATE_SDK_PATH=`pwd`/.PlaydateSDK
-      '';
     };
   }
 }
@@ -71,13 +74,9 @@ nix develop
 PlaydateSimulator
 ```
 
-There is a more advanced example of a project flake in ./examples/ which allows you to build a pdx file like so
+There is a more advanced example of a project flake in ./examples/ which supports `nix build` for testing, `nix build .#playdate-example-arm` for making the final build, and `nix run` to allow you to build and run a C based playdate project.
+You should be able to just
 ```bash
-nix build
-```
-
-Once you've done that you can run
-```bash
-nix develop
-PlaydateSimulator ./result/hello_world.pdx
+cd exanple
+nix run
 ```
