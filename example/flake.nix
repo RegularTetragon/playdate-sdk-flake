@@ -36,7 +36,7 @@
         export PLAYDATE_SDK_PATH=${playdate-sdk-pkg}
         mkdir build
         cd build
-        cmake ..
+        cmake $cmakeFlags ..
         make
         cd ..
         '';
@@ -50,6 +50,8 @@
             ${playdate-sdk-pkg}/bin/PlaydateSimulator $out/hello_world.pdx
           EOL
           chmod 555 $out/bin/${self.packages.${system}.default.pname}
+          cd $out
+          zip -r playdat-example.pdx.zip playdate-example.pdx
           runHook postInstall
         '';
       };
