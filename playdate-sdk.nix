@@ -34,10 +34,10 @@
 in
   stdenv.mkDerivation rec {
     pname = "playdate-sdk";
-    version = "2.5.0";
+    version = "2.6.2";
     src = pkgs.fetchurl {
       url = "https://download.panic.com/playdate_sdk/Linux/PlaydateSDK-${version}.tar.gz";
-      sha256 = "sha256-1b7j7lkN16YO4EUWyZPZ+PPC9Sa3AFoN5c84ArTGXok=";
+      sha256 = "sha256-GDqXXPgBYSiKuxcV3M/Ho5ALX5IAOkx6neK6bZKYt7E=";
     };
 
     buildInputs = pdcInputs;
@@ -73,7 +73,7 @@ in
 
       cp $root/bin/pdc $out/bin/pdc
       cp $root/bin/pdutil $out/bin/pdutil
-      cp $root/bin/PlaydateSimulator $out/bin/PlaydateSimulator 
+      cp $root/bin/PlaydateSimulator $out/bin/PlaydateSimulator
 
       # NixOS really hates writable install paths. Lets fake one
 
