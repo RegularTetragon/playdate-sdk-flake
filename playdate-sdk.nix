@@ -24,6 +24,7 @@
     libxkbcommon
     wayland
     libpulseaudio
+    libpng
     gsettings-desktop-schemas
   ];
 
